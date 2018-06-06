@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<video id="videoElement" src="mov_bbb.mp4" controls></video>
+<button id="pipButtonElement">PiP</button>
+
+<script>
+
+	// Don't allow PiP if not supported.
+	if (!('pictureInPictureEnabled' in document) || !document.pictureInPictureEnabled) {
+		// Disable PiP button so it's not an option.
+		document.getElementById("pipButtonElement").style.display = "none";
+	}
+
+	// When button clicked, if it's already playing in PiP, stop it.
+	// If it isn't playing in PiP, start it. Right now just log errors.
+  	pipButtonElement.addEventListener('click', async function() {
+		if(!document.pictureInPictureElement){
+			pipButtonElement.disabled = true;
+			try{
+	 			const pipWindow = await videoElement.requestPictureInPicture();
+	 			// Handle resizing - nothing super interesting to do, so just log for now
+	 			pipWindow.addEventListener('resize', async function(event){
+					console.log("Width: " + pipWindow.width + " and Height: " + pipWindow.height);
+				});
+ 			}catch(error){
+ 				console.log("error showing pip: " + error);
+ 			}finally{
+	 	 		pipButtonElement.disabled = false;
+ 			}
+ 	 	}else{
+ 	 		// Close PiP window.
+ 	 		await document.exitPictureInPicture().catch(error => {
+ 	 			console.log("error closing pip: " + error);
+ 	 		});
+ 	 	}
+	});
+</script>
+
+</body>
+</html>
