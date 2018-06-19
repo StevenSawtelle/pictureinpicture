@@ -6,6 +6,11 @@
 <video id="videoElement" src="https://storage.googleapis.com/media-session/caminandes/short.mp4" controls></video>
 <button id="pipButtonElement">PiP</button>
 
+
+<h3>Debugging Info (Useful only when Picture in Picture is active</h3>
+<h1 id="widthheight">Width: 0 <br/>Height: 0</h1>
+<p id="logging"></p>
+
 <script>
 
 	// Don't allow PiP if not supported.
@@ -15,7 +20,7 @@
 	}
 
 	// When button clicked, if it's already playing in PiP, stop it.
-	// If it isn't playing in PiP, start it. Right now just log errors.
+	// If it isn't playing in PiP, start it.
   	pipButtonElement.addEventListener('click', async function() {
 		if(!document.pictureInPictureElement){
 			pipButtonElement.disabled = true;
@@ -23,20 +28,34 @@
 	 			const pipWindow = await videoElement.requestPictureInPicture();
 	 			// Handle resizing - nothing super interesting to do, so just log for now
 	 			pipWindow.addEventListener('resize', async function(event){
-					console.log("Width: " + pipWindow.width + " and Height: " + pipWindow.height);
+					document.getElementById("widthheight").innerHTML = ("Width: " + pipWindow.width + "</br>Height: " + pipWindow.height);
 				});
  			}catch(error){
- 				console.log("error showing pip: " + error);
+ 				log("error requesting pip: " + error);
  			}finally{
 	 	 		pipButtonElement.disabled = false;
  			}
  	 	}else{
  	 		// Close PiP window.
  	 		await document.exitPictureInPicture().catch(error => {
- 	 			console.log("error closing pip: " + error);
+ 	 			log("error closing pip: " + error);
  	 		});
  	 	}
 	});
+
+	videoElement.addEventListener('enterpictureinpicture', function(event) {
+	  document.getElementById("logging").innerHTML += ('Entered Picture-in-Picture.<br/>');
+	});
+
+	videoElement.addEventListener('leavepictureinpicture', function(event) {
+	  document.getElementById("logging").innerHTML += ('Left Picture-in-Picture.<br/>');
+	});
+
+	videoElement.addEventListener('pictureinpicturecontrolclick', function(event) {
+	  document.getElementById("logging").innerHTML += ('Control was clicked on Picture in Picture window.<br/>');
+	  document.getElementById("logging").innerHTML += ('Its id is: ' + event.id + '<br/>');
+});
+
 </script>
 
 </body>
