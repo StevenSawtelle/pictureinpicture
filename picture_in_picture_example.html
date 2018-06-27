@@ -13,47 +13,47 @@
 
 <script>
 
-	// Don't allow PiP if not supported.
-	if (!('pictureInPictureEnabled' in document) || !document.pictureInPictureEnabled) {
-		// Disable PiP button so it's not an option.
+	// Don"t allow PiP if not supported.
+	if (!("pictureInPictureEnabled" in document) || !document.pictureInPictureEnabled) {
+		// Disable PiP button so it"s not an option.
 		document.getElementById("pipButtonElement").style.display = "none";
 	}
 
-	videoElement.setPictureInPictureControls([new PictureInPictureControl([
+	videoElement.setPictureInPictureControls([new PictureInPictureControl(
 		{
-			id: 'thumbs-up',
-			label: 'Thumbs up',
+			id: "thumbs-up",
+			label: "Thumbs up",
 			icons: [
 				{
-					src: 'http://dummyimage.com/96x96',
-					sizes: '96x96',
-					type: 'image/png'
+					src: "http://dummyimage.com/96x96",
+					sizes: "96x96",
+					type: "image/png"
 				}
 			]
 		}
-	]), new PictureInPictureControl([
+	),new PictureInPictureControl(
 		{
-			id: 'thumbs-up2',
-			label: 'Thumbs up2',
+			id: "thumbs-down",
+			label: "Thumbs down",
 			icons: [
 				{
-					src: 'http://dummyimage.com/96x96',
-					sizes: '96x96',
-					type: 'image/png'
+					src: "http://dummyimage.com/96x96",
+					sizes: "96x96",
+					type: "image/png"
 				}
 			]
 		}
-	])]);
+	)]);
 
-	// When button clicked, if it's already playing in PiP, stop it.
-	// If it isn't playing in PiP, start it.
-  	pipButtonElement.addEventListener('click', async function() {
+	// When button clicked, if it"s already playing in PiP, stop it.
+	// If it isn"t playing in PiP, start it.
+  	pipButtonElement.addEventListener("click", async function() {
 		if(!document.pictureInPictureElement){
 			pipButtonElement.disabled = true;
 			try{
 	 			const pipWindow = await videoElement.requestPictureInPicture();
 	 			// Handle resizing - nothing super interesting to do, so just log for now
-	 			pipWindow.addEventListener('resize', async function(event){
+	 			pipWindow.addEventListener("resize", async function(event){
 					document.getElementById("widthheight").innerHTML = ("Width: " + pipWindow.width + "</br>Height: " + pipWindow.height);
 				});
  			}catch(error){
@@ -69,17 +69,17 @@
  	 	}
 	});
 
-	videoElement.addEventListener('enterpictureinpicture', function(event) {
-	  document.getElementById("logging").innerHTML += ('Entered Picture-in-Picture.<br/>');
+	videoElement.addEventListener("enterpictureinpicture", function(event) {
+	  document.getElementById("logging").innerHTML += ("Entered Picture-in-Picture.<br/>");
 	});
 
-	videoElement.addEventListener('leavepictureinpicture', function(event) {
-	  document.getElementById("logging").innerHTML += ('Left Picture-in-Picture.<br/>');
+	videoElement.addEventListener("leavepictureinpicture", function(event) {
+	  document.getElementById("logging").innerHTML += ("Left Picture-in-Picture.<br/>");
 	});
 
-	videoElement.addEventListener('pictureinpicturecontrolclick', function(event) {
-	  document.getElementById("logging").innerHTML += ('Control was clicked on Picture in Picture window.<br/>');
-	  document.getElementById("logging").innerHTML += ('Its id is: ' + event.id + '<br/>');
+	videoElement.addEventListener("pictureinpicturecontrolclick", function(event) {
+	  document.getElementById("logging").innerHTML += ("Control was clicked on Picture in Picture window.<br/>");
+	  document.getElementById("logging").innerHTML += ("Its id is: " + event.id + "<br/>");
 });
 
 </script>
