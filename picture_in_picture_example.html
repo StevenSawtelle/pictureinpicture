@@ -19,31 +19,31 @@
 		document.getElementById("pipButtonElement").style.display = "none";
 	}
 
-	// videoElement.setPictureInPictureControls([new PictureInPictureControl(
-	// 	{
-	// 		id: "thumbs-up",
-	// 		label: "Thumbs up",
-	// 		icons: [
-	// 			{
-	// 				src: "http://dummyimage.com/96x96",
-	// 				sizes: "96x96",
-	// 				type: "image/png"
-	// 			}
-	// 		]
-	// 	}
-	// ),new PictureInPictureControl(
-	// 	{
-	// 		id: "thumbs-down",
-	// 		label: "Thumbs down",
-	// 		icons: [
-	// 			{
-	// 				src: "http://dummyimage.com/96x96",
-	// 				sizes: "96x96",
-	// 				type: "image/png"
-	// 			}
-	// 		]
-	// 	}
-	// )]);
+	videoElement.setPictureInPictureControls([new PictureInPictureControl(
+		{
+			id: "thumbs-up",
+			label: "Thumbs up",
+			icons: [
+				{
+					src: "http://dummyimage.com/96x96",
+					sizes: "96x96",
+					type: "image/png"
+				}
+			]
+		}
+	),new PictureInPictureControl(
+		{
+			id: "thumbs-down",
+			label: "Thumbs down",
+			icons: [
+				{
+					src: "http://dummyimage.com/96x96",
+					sizes: "96x96",
+					type: "image/png"
+				}
+			]
+		}
+	)]);
 
 	// When button clicked, if it"s already playing in PiP, stop it.
 	// If it isn"t playing in PiP, start it.
