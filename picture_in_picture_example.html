@@ -5,7 +5,7 @@
 <p>Credits: Media files are © copyright Blender Foundation | www.blender.org.</p>
 <video id="videoElement" src="https://storage.googleapis.com/media-session/caminandes/short.mp4" controls></video>
 <button id="pipButtonElement">PiP</button>
-
+<button id="addControlsButton">Add controls</button>
 
 <h3>Debugging Info (Useful only when Picture in Picture is active</h3>
 <h1 id="widthheight">Width: 0 <br/>Height: 0</h1>
@@ -68,6 +68,39 @@
  	 		});
  	 	}
 	});
+
+  	addControlsButton.addEventListener("click", async function() {
+		try{
+	 		videoElement.setPictureInPictureControls([new PictureInPictureControl(
+				{
+					id: "thumbs-up",
+					label: "Thumbs up",
+					icons: [
+						{
+							src: "http://dummyimage.com/96x96",
+							sizes: "96x96",
+							type: "image/png"
+						}
+					]
+				}
+			),new PictureInPictureControl(
+				{
+					id: "thumbs-down",
+					label: "Thumbs down",
+					icons: [
+						{
+							src: "http://dummyimage.com/96x96",
+							sizes: "96x96",
+							type: "image/png"
+						}
+					]
+				}
+			)]);
+	 		}catch(error){
+ 				log("error adding controls: " + error);
+ 			}
+	});
+
 
 	videoElement.addEventListener("enterpictureinpicture", function(event) {
 	  document.getElementById("logging").innerHTML += ("Entered Picture-in-Picture.<br/>");
