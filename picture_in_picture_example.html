@@ -31,27 +31,28 @@
 					document.getElementById("widthheight").innerHTML = ("Width: " + pipWindow.width + "</br>Height: " + pipWindow.height);
 				});
  			}catch(error){
- 				log("error requesting pip: " + error);
+ 				console.log("error requesting pip: " + error);
  			}finally{
 	 	 		pipButtonElement.disabled = false;
  			}
  	 	}else{
  	 		// Close PiP window.
  	 		await document.exitPictureInPicture().catch(error => {
- 	 			log("error closing pip: " + error);
+ 	 			console.log("error closing pip: " + error);
  	 		});
  	 	}
 	});
 
   	addControlsButton.addEventListener("click", async function() {
 		try{
+			var x = (document.location.pathname.substring(0, document.location.pathname.lastIndexOf('/')));
 	 		await videoElement.setPictureInPictureControls([
 				{
 					id: "thumbs-up",
 					label: "Thumbs up",
 					icons: [
 						{
-							src: "/pictureinpicture/96x96.png",
+							src: x + "/96x96.png",
 							sizes: "96x96",
 							type: "image/png"
 						}
@@ -70,7 +71,7 @@
 				}
 			]);
 	 		}catch(error){
- 				log("error adding controls: " + error);
+ 				console.log("error adding controls: " + error);
  			}
 	});
 
