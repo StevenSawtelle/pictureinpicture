@@ -26,6 +26,7 @@
 			pipButtonElement.disabled = true;
 			try{
 	 			const pipWindow = await videoElement.requestPictureInPicture();
+	 			console.log(pipWindow)
 	 			// Handle resizing - nothing super interesting to do, so just log for now
 	 			pipWindow.addEventListener("resize", async function(event){
 					document.getElementById("widthheight").innerHTML = ("Width: " + pipWindow.width + "</br>Height: " + pipWindow.height);
@@ -45,26 +46,25 @@
 
   	addControlsButton.addEventListener("click", async function() {
 		try{
-			var x = (document.location.pathname.substring(0, document.location.pathname.lastIndexOf('/')));
 	 		await videoElement.setPictureInPictureControls([
 				{
 					id: "thumbs-up",
 					label: "Thumbs up",
 					icons: [
 						{
-							src: x + "/96x96.png",
+							src: "https://www.gstatic.com/images/icons/material/system/1x/volume_mute_black_48dp.png",
 							sizes: "96x96",
 							type: "image/png"
 						}
 					]
 				},
 				{
-					id: "thumbs-down",
-					label: "Thumbs down",
+					id: "unpip",
+					label: "Take away from PiP",
 					icons: [
 						{
-							src: "https://dummyimage.com/144x144",
-							sizes: "144x144",
+							src: "https://www.gstatic.com/images/icons/material/system/1x/picture_in_picture_black_48dp.png",
+							sizes: "96x96",
 							type: "image/png"
 						}
 					]
@@ -85,6 +85,11 @@
 	});
 
 	videoElement.addEventListener("pictureinpicturecontrolclick", function(event) {
+		if(event.id == "unpip"){
+			document.exitPictureInPicture().catch(error => {
+ 	 			console.log("error closing pip: " + error);
+ 	 		});
+		}
 	  document.getElementById("logging").innerHTML += ("Control was clicked on Picture in Picture window.<br/>");
 	  document.getElementById("logging").innerHTML += ("Its id is: " + event.id + "<br/>");
 });
