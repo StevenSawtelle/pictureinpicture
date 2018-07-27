@@ -46,13 +46,14 @@
 
   	addControlsButton.addEventListener("click", async function() {
 		try{
-	 		await videoElement.setPictureInPictureControls([
+	 		videoElement.setPictureInPictureControls([
 				{
-					id: "thumbs-up",
-					label: "Thumbs up",
+					id: "mute",
+					label: "Mute",
 					icons: [
 						{
-							src: "https://www.gstatic.com/images/icons/material/system/1x/volume_mute_black_48dp.png",
+							src: "https://www.gstatic.com/images/icons/\
+							material/system/1x/volume_mute_black_48dp.png",
 							sizes: "96x96",
 							type: "image/png"
 						}
@@ -60,10 +61,11 @@
 				},
 				{
 					id: "unpip",
-					label: "Take away from PiP",
+					label: "Reset video element",
 					icons: [
 						{
-							src: "https://www.gstatic.com/images/icons/material/system/1x/picture_in_picture_black_48dp.png",
+							src: "https://www.gstatic.com/images/icons/\
+							material/system/1x/picture_in_picture_black_48dp.png",
 							sizes: "96x96",
 							type: "image/png"
 						}
@@ -90,9 +92,8 @@
  	 			console.log("error closing pip: " + error);
  	 		});
 		}
-	  document.getElementById("logging").innerHTML += ("Control was clicked on Picture in Picture window.<br/>");
-	  document.getElementById("logging").innerHTML += ("Its id is: " + event.id + "<br/>");
-});
+	}
+);
 
 </script>
 
