@@ -6,6 +6,9 @@
 <video id="videoElement" src="https://storage.googleapis.com/media-session/caminandes/short.mp4" controls></video>
 <button id="pipButtonElement">PiP</button>
 <button id="addControlsButton">Add controls</button>
+<button id="clearControlsButton">Clear controls</button>
+<button id="addControlsButton2">Add controls 2</button>
+<button id="add1ControlButton">Add 1 control</button>
 
 <h3>Debugging Info (Useful only when Picture in Picture is active</h3>
 <h1 id="widthheight">Width: 0 <br/>Height: 0</h1>
@@ -44,7 +47,8 @@
  	 	}
 	});
 
-  	addControlsButton.addEventListener("click", async function() {
+
+	addControlsButton.addEventListener("click", async function() {
 		try{
 	 		videoElement.setPictureInPictureControls([
 				{
@@ -74,6 +78,67 @@
 			]);
 	 		}catch(error){
  				console.log("error adding controls: " + error);
+ 			}
+	});
+
+
+  	add1ControlButton.addEventListener("click", async function() {
+		try{
+	 		videoElement.setPictureInPictureControls([{
+					id: "unpip",
+					label: "Reset video element",
+					icons: [
+						{
+							src: "https://www.gstatic.com/images/icons/\
+							material/system/1x/picture_in_picture_black_48dp.png",
+							sizes: "96x96",
+							type: "image/png"
+						}
+					]
+				}]);
+	 		}catch(error){
+ 				console.log("error adding 1 control: " + error);
+ 			}
+	});
+
+  	clearControlsButton.addEventListener("click", async function() {
+		try{
+	 		videoElement.removePictureInPictureControls();
+	 		}catch(error){
+ 				console.log("error clearing controls: " + error);
+ 			}
+	});
+
+	addControlsButton2.addEventListener("click", async function() {
+		try{
+	 		videoElement.setPictureInPictureControls([
+				{
+					id: "unpip",
+					label: "Reset video element",
+					icons: [
+						{
+							src: "https://www.gstatic.com/images/icons/\
+							material/system/1x/picture_in_picture_black_48dp.png",
+							sizes: "96x96",
+							type: "image/png"
+						}
+					]
+				},
+				{
+					id: "mute",
+					label: "Mute",
+					icons: [
+						{
+							src: "https://www.gstatic.com/images/icons/\
+							material/system/1x/volume_mute_black_48dp.png",
+							sizes: "96x96",
+							type: "image/png"
+						}
+					]
+				}
+			]);
+	 		}catch(error){
+ 				console.log("error adding controls2: " + error);
  			}
 	});
 
