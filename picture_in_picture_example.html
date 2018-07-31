@@ -56,10 +56,9 @@
 					label: "Mute",
 					icons: [
 						{
-							src: "https://www.gstatic.com/images/icons/\
-							material/system/1x/volume_mute_black_48dp.png",
-							sizes: "96x96",
-							type: "image/png"
+							src: "https://dummyimage.com/512x512/7d727d/fafafa.gif",
+							sizes: "512x512",
+							type: "image/gif"
 						}
 					]
 				},
@@ -68,10 +67,15 @@
 					label: "Reset video element",
 					icons: [
 						{
-							src: "https://www.gstatic.com/images/icons/\
-							material/system/1x/picture_in_picture_black_48dp.png",
+							// unused because it's smaller
+							src: "/usr/local/google/home/sawtelle/Downloads/logo_maps_ios_color_1x_web_96dp.webp",
+							sizes: "48x48",
+							type: "image/webp"
+						},
+						{
+							src: "https://stevensawtelle.github.io/pictureinpicture/logo_maps_ios_color_1x_web_96dp.webp",
 							sizes: "96x96",
-							type: "image/png"
+							type: "image/webp"
 						}
 					]
 				}
@@ -130,7 +134,7 @@
 					icons: [
 						{
 							src: "https://www.gstatic.com/images/icons/\
-							material/system/1x/volume_mute_black_48dp.png",
+							material/system/1x/volume_mute_black_24dp.png",
 							sizes: "96x96",
 							type: "image/png"
 						}
@@ -152,6 +156,7 @@
 	});
 
 	videoElement.addEventListener("pictureinpicturecontrolclick", function(event) {
+	  document.getElementById("logging").innerHTML += ("Custom control clicked with id: "+event.id+".<br/>");
 		if(event.id == "unpip"){
 			document.exitPictureInPicture().catch(error => {
  	 			console.log("error closing pip: " + error);
