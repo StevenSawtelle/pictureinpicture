@@ -9,6 +9,7 @@
 <button id="clearControlsButton">Clear controls</button>
 <button id="addControlsButton2">Add controls 2</button>
 <button id="add1ControlButton">Add 1 control</button>
+<button id="changeVideoButton">Change Video</button>
 
 <h3>Debugging Info (Useful only when Picture in Picture is active</h3>
 <h1 id="widthheight">Width: 0 <br/>Height: 0</h1>
@@ -56,8 +57,18 @@
 					label: "Mute",
 					icons: [
 						{
-							src: "https://dummyimage.com/512x512/7d727d/fafafa.gif",
-							sizes: "512x512",
+							src: "https://dummyimage.com/144x144/7d727d/fafafa.gif",
+							sizes: "144x144",
+							type: "image/gif"
+						},
+						{
+							src: "https://dummyimage.com/96x96/7d727d/fafafa.gif",
+							sizes: "96x96",
+							type: "image/gif"
+						},
+						{
+							src: "https://dummyimage.com/48x48/7d727d/fafafa.gif",
+							sizes: "48x48",
 							type: "image/gif"
 						}
 					]
@@ -68,15 +79,15 @@
 					icons: [
 						{
 							// unused because it's smaller
-							src: "/usr/local/google/home/sawtelle/Downloads/logo_maps_ios_color_1x_web_96dp.webp",
+							src: "/usr/local/google/home/sawtelle/Downloads/logo_maps_ios/logo_maps_ios_color_1x_web_96dp.png",
 							sizes: "48x48",
 							type: "image/webp"
-						},
-						{
-							src: "https://stevensawtelle.github.io/pictureinpicture/logo_maps_ios_color_1x_web_96dp.webp",
-							sizes: "96x96",
-							type: "image/webp"
 						}
+						// {
+						// 	src: "https://stevensawtelle.github.io/pictureinpicture/logo_maps_ios_color_1x_web_96dp.webp",
+						// 	sizes: "96x96",
+						// 	type: "image/webp"
+						// }
 					]
 				}
 			]);
@@ -88,7 +99,7 @@
 
   	add1ControlButton.addEventListener("click", async function() {
 		try{
-	 		videoElement.setPictureInPictureControls([{
+	 		videoElement.setPictureInPictureControls([				{
 					id: "unpip",
 					label: "Reset video element",
 					icons: [
@@ -144,6 +155,17 @@
 	 		}catch(error){
  				console.log("error adding controls2: " + error);
  			}
+	});
+
+	changeVideoButton.addEventListener("click", async function() {
+		var video = document.getElementById('videoElement');
+		if(video.src === 'https://media.w3.org/2010/05/sintel/trailer.mp4'){
+			video.src = 'https://storage.googleapis.com/media-session/caminandes/short.mp4';
+		}
+		else if(video.src === 'https://storage.googleapis.com/media-session/caminandes/short.mp4'){
+			video.src = 'https://media.w3.org/2010/05/sintel/trailer.mp4';
+		}
+		video.play();
 	});
 
 
