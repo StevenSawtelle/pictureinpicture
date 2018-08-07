@@ -10,12 +10,16 @@
 <button id="addControlsButton2">Add controls 2</button>
 <button id="add1ControlButton">Add 1 control</button>
 <button id="changeVideoButton">Change Video</button>
+<button id="muteButton">Mute/Unmute</button>
 
 <h3>Debugging Info (Useful only when Picture in Picture is active</h3>
 <h1 id="widthheight">Width: 0 <br/>Height: 0</h1>
 <p id="logging"></p>
 
 <script>
+	var video = document.getElementById('videoElement');
+	video.muted = true;
+
 
 	// Don"t allow PiP if not supported.
 	if (!("pictureInPictureEnabled" in document) || !document.pictureInPictureEnabled) {
@@ -166,6 +170,11 @@
 			video.src = 'https://media.w3.org/2010/05/sintel/trailer.mp4';
 		}
 		video.play();
+	});
+
+	muteButton.addEventListener("click", async function() {
+		var video = document.getElementById('videoElement');
+		video.muted = !video.muted;
 	});
 
 
